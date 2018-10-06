@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>314</width>
-    <height>249</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>314</width>
-    <height>249</height>
+    <height>200</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>314</width>
-    <height>249</height>
+    <height>200</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -61,7 +61,7 @@
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>Wide Mode</string>
+       <string>Enable Wide Mode</string>
       </property>
       <property name="flat">
        <bool>false</bool>
@@ -105,7 +105,7 @@
   </action>
   <action name="actionGeneral_Settings">
    <property name="text">
-    <string>Buy me a Beer</string>
+    <string>Buy me a Root Beer</string>
    </property>
   </action>
   <action name="actionWebsite">
