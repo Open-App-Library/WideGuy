@@ -6,29 +6,29 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>853</width>
-    <height>510</height>
+    <width>314</width>
+    <height>249</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>314</width>
+    <height>249</height>
+   </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>16777215</width>
-    <height>16777215</height>
+    <width>314</width>
+    <height>249</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>WideGuy</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#centralWidget, #mainButton {
-	background: palette(dark);
-	color: palette(light);
-}
-
-
-QMenuBar {
-    background: palette(dark);
-	color: palette(light);
+   <string notr="true">#centralWidget, #mainButton, QMenuBar {
+	background: #304151;
+	color: white;
 }
 </string>
   </property>
@@ -40,8 +40,7 @@ QMenuBar {
     </sizepolicy>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-</string>
+    <string notr="true"/>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
@@ -59,8 +58,7 @@ QMenuBar {
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">
-</string>
+       <string notr="true"/>
       </property>
       <property name="text">
        <string>Wide Mode</string>
@@ -77,7 +75,7 @@ QMenuBar {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>853</width>
+     <width>314</width>
      <height>22</height>
     </rect>
    </property>
@@ -87,8 +85,8 @@ QMenuBar {
     </property>
     <addaction name="actionWebsite"/>
     <addaction name="actionSettings"/>
-    <addaction name="actionGeneral_Settings"/>
     <addaction name="actionXOrg_Settings"/>
+    <addaction name="actionGeneral_Settings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
