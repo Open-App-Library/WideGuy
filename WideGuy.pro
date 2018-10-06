@@ -26,13 +26,16 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    xorgconfparser.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    xorgconfparser.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    textareadialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

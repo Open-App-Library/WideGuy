@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <ctime>
 #include <QDebug>
+#include "xorgconfparser.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,11 +18,15 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void setWideMode(bool wideMode);
+
     void mainButtonClicked();
 private:
     Ui::MainWindow *ui;
     bool m_wideMode=false;
-    long double m_lastTimeToggled=0;
+    qint64 m_lastTimeToggled=0;
+    XOrgConfParser *m_configParser;
+
 };
 
 #endif // MAINWINDOW_H
