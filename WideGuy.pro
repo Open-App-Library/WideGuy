@@ -39,7 +39,8 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     textareadialog.ui \
-    settings.ui
+    settings.ui \
+    about.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

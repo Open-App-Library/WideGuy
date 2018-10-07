@@ -113,13 +113,7 @@ void XOrgConfParser::enableXinerama(bool enable)
         stream << "  cp $m_confLocation $m_confLocation.wideguy.backup" << "\n";
         stream << "fi"                                                  << "\n";
         stream << "mv $tmpFileLocation $m_confLocation"                 << "\n";
-        stream << "if [ -f /usr/bin/lightdm ]; then"                    << "\n";
-        stream << "  systemctl restart lightdm"                         << "\n";
-        stream << "elif [ -f /usr/bin/sddm ]; then"                     << "\n";
-        stream << "  systemctl restart sddm"                            << "\n";
-        stream << "elif [ -f /usr/bin/gdm ]; then"                      << "\n";
-        stream << "  systemct restart gdm"                              << "\n";
-        stream << "fi"                                                  << "\n";
+        stream << "$3"                                                  << "\n";
     } else {
         QMessageBox errorBox;
         errorBox.setIcon(QMessageBox::Critical);
@@ -128,20 +122,8 @@ void XOrgConfParser::enableXinerama(bool enable)
     }
     script.close();
 
-    QProcess p;
-    QString cmd = QString("pkexec sh %1 %2 %3").arg(scriptLocation, tmpFileLocation, m_confLocation);
-    qDebug() << cmd;
-    p.start(cmd);
-    p.waitForFinished();
-    QString errors = p.readAllStandardError();
-    QString msg    = p.readAllStandardOutput();
-    if (errors.compare("") == -1) {
-        qDebug() << "Error:" << errors;
-    }
-    if (msg.compare("") == -1) {
-        qDebug() << msg;
-    }
-    p.close();
+    QString cmd = QString("pkexec sh %1 %2 %3 %4").arg(scriptLocation, tmpFileLocation, m_confLocation, m_xorgRestartCmd);
+    HelperIO::shellCommand(cmd);
 }
 
 bool XOrgConfParser::xineramaIsEnabled()
@@ -164,7 +146,6 @@ bool XOrgConfParser::xineramaIsEnabled()
             // The Money Code
             QRegExp OptionXinerama("^[\\s\t]+Option[\\s\t]+\"Xinerama\"[\\s\t]+\"1\"");
             if (OptionXinerama.indexIn(curLine) >= 0) {
-                qDebug() << "Tis enabled" << curLine;
                 return true;
             }
 
@@ -173,9 +154,28 @@ bool XOrgConfParser::xineramaIsEnabled()
     return false;
 }
 
+QString XOrgConfParser::getDisplayManager()
+{
+    QFile f;
+    f.setFileName("/usr/bin/gdm");
+    if ( f.exists() )
+        return "gdm";
+
+    f.setFileName("/usr/bin/sddm");
+    if ( f.exists() )
+        return "sddm";
+
+    return "lightdm";
+}
+
 void XOrgConfParser::setConfLocation(QString confLocation)
 {
     m_confLocation = confLocation;
+}
+
+void XOrgConfParser::setXorgRestartCmd(QString restartCmd)
+{
+    m_xorgRestartCmd = restartCmd;
 }
 
 QString XOrgConfParser::confLocation()
@@ -201,6 +201,29 @@ QString XOrgConfParser::readConfig(bool reRead)
         }
     }
     return m_conf;
+}
+
+void XOrgConfParser::restoreBackup()
+{
+    QString backup_location = QString("%1.wideguy.backup").arg(m_confLocation);
+    QFile f(backup_location);
+    if (!f.exists()) {
+        QMessageBox errorBox;
+        errorBox.setIcon(QMessageBox::Critical);
+        errorBox.setText(tr("Backup file does not exist") + backup_location);
+        errorBox.exec();
+        return;
+    }
+
+    QString cmd = QString("pkexec mv %1 %2").arg(backup_location, m_confLocation);
+    HelperIO::shellCommand(cmd);
+}
+
+void XOrgConfParser::restartXorg()
+{
+    QString cmd = QString("pkexec %1").arg(m_xorgRestartCmd);
+    qDebug() << cmd;
+    HelperIO::shellCommand(cmd);
 }
 
 void XOrgConfParser::setConfirmChanges(bool confirmChanges)

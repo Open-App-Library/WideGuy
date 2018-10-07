@@ -6,9 +6,11 @@
 #include <QDebug>
 #include "settings.h"
 #include "xorgconfparser.h"
+#include "ui_about.h"
 
 namespace Ui {
 class MainWindow;
+class About;
 }
 
 class MainWindow : public QMainWindow
@@ -25,12 +27,26 @@ public:
     void CheckSetupAndSetLabel();
     void updateSettings();
 
+    void setWideMode(bool enabled);
+
 private slots:
     void on_actionSettings_triggered();
+
+    void on_actionAbout_triggered();
+
+    void on_actionForce_WideMan_triggered();
+
+    void on_actionForce_SkinnyMan_triggered();
+
+    void on_actionRestore_Backup_triggered();
+
+    void on_actionRestart_Xorg_triggered();
 
 private:
     Ui::MainWindow *ui;
     Settings *m_settings;
+    QDialog *m_about_dialog;
+    Ui::About *m_about_window;
     XOrgConfParser *m_configParser;
     bool m_config_exists=false;
     bool m_wideMode=false;

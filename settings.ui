@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>459</width>
-    <height>162</height>
+    <width>501</width>
+    <height>178</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -26,46 +26,6 @@
    <item>
     <widget class="QWidget" name="widget" native="true">
      <layout class="QFormLayout" name="formLayout">
-      <item row="2" column="1">
-       <widget class="QCheckBox" name="confirmChanges">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Use custom xorg.conf location</string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="wordWrap">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QCheckBox" name="useCustomLocation">
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Custom xorg.conf location</string>
-        </property>
-        <property name="wordWrap">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QLineEdit" name="customLocation"/>
-      </item>
       <item row="2" column="0">
        <widget class="QLabel" name="label_4">
         <property name="maximumSize">
@@ -75,10 +35,48 @@
          </size>
         </property>
         <property name="text">
-         <string>Manually confirm changes to xorg.conf</string>
+         <string>Confirm changes to Xorg config</string>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QCheckBox" name="confirmChanges">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>xorg.conf location</string>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="customLocation">
+        <property name="placeholderText">
+         <string>/etc/X11/xorg.conf</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Command to restart Xorg</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QLineEdit" name="customRestartXorgCmd">
+        <property name="placeholderText">
+         <string>systemctl restart lightdm</string>
         </property>
        </widget>
       </item>

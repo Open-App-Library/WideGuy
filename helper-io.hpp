@@ -3,6 +3,8 @@
 
 #include <QString>
 #include <QFile>
+#include <QProcess>
+#include <QDebug>
 
 class HelperIO {
 public:
@@ -14,6 +16,22 @@ public:
         val = file.readAll();
         file.close();
         return val;
+    }
+
+    static void shellCommand(QString cmd) {
+        QProcess p;
+        qDebug() << cmd;
+        p.start(cmd);
+        p.waitForFinished();
+        QString errors = p.readAllStandardError();
+        QString msgs    = p.readAllStandardOutput();
+        if (errors.compare("") == -1) {
+            qDebug() << "Error:" << errors;
+        }
+        if (msgs.compare("") == -1) {
+            qDebug() << msgs;
+        }
+        p.close();
     }
 };
 

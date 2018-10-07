@@ -93,16 +93,18 @@
     <property name="title">
      <string>Advanced</string>
     </property>
-    <addaction name="actionManual_Actions"/>
-    <addaction name="actionForce_SkinnyMan"/>
     <addaction name="actionRestore_Backup"/>
+    <addaction name="actionForce_WideMan"/>
+    <addaction name="actionForce_SkinnyMan"/>
+    <addaction name="actionRestart_Xorg"/>
    </widget>
    <addaction name="menuConfiguration"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionSubmitBug">
    <property name="icon">
-    <iconset theme="format-text-bold"/>
+    <iconset theme="format-text-bold">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Submit a Bug</string>
@@ -110,7 +112,8 @@
   </action>
   <action name="actionGeneral_Settings">
    <property name="icon">
-    <iconset theme="face-angel"/>
+    <iconset theme="face-angel">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Buy me a Root Beer</string>
@@ -118,7 +121,8 @@
   </action>
   <action name="actionTutorial">
    <property name="icon">
-    <iconset theme="help-browser"/>
+    <iconset theme="help-browser">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Tutorial</string>
@@ -126,15 +130,17 @@
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="preferences-system"/>
+    <iconset theme="preferences-system">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Settings</string>
    </property>
   </action>
-  <action name="actionManual_Actions">
+  <action name="actionForce_WideMan">
    <property name="icon">
-    <iconset theme="view-fullscreen"/>
+    <iconset theme="view-fullscreen">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Force WideMan</string>
@@ -142,7 +148,8 @@
   </action>
   <action name="actionForce_SkinnyMan">
    <property name="icon">
-    <iconset theme="view-restore"/>
+    <iconset theme="view-restore">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Force SkinnyMan</string>
@@ -150,7 +157,8 @@
   </action>
   <action name="actionRestore_Backup">
    <property name="icon">
-    <iconset theme="drive-harddisk"/>
+    <iconset theme="drive-harddisk">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Restore Backup</string>
@@ -158,10 +166,19 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about"/>
+    <iconset theme="help-about">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionRestart_Xorg">
+   <property name="icon">
+    <iconset theme="video-display"/>
+   </property>
+   <property name="text">
+    <string>Restart Xorg</string>
    </property>
   </action>
  </widget>

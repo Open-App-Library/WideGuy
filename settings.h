@@ -17,8 +17,10 @@ public:
     explicit Settings(QWidget *parent = nullptr);
 
     bool confirmChanges();
-    bool useCustomLocation();
     QString customLocation();
+    QString customRestartXorgCmd();
+
+    void initSettings(bool forceReset=false);
 
     ~Settings();
 

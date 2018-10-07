@@ -25,11 +25,17 @@ public:
     void enableXinerama(bool enable);
     bool xineramaIsEnabled();
 
+    static QString getDisplayManager();
+
     void setConfLocation(QString confLocation);
+    void setXorgRestartCmd(QString restartCmd);
+
     QString confLocation();
 
     QString readConfig(bool reRead=false);
 
+    void restoreBackup();
+    void restartXorg();
 
     void setConfirmChanges(bool confirmChanges);
 private:
@@ -37,6 +43,7 @@ private:
     Ui::TextareaDialog m_textareaDialog;
     bool m_confirmChanges = false;
     QString m_confLocation;
+    QString m_xorgRestartCmd;
     QString m_conf=""; // The text content of the config
 };
 
