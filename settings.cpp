@@ -12,6 +12,7 @@ Settings::Settings(QWidget *parent) :
 
     ui->confirmChanges->setChecked( confirmChanges() );
     ui->customLocation->setText( customLocation() );
+    ui->customRestartXorgCmd->setText( customRestartXorgCmd() );
 
     initSettings();
 }
