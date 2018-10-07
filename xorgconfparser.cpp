@@ -15,6 +15,21 @@ XOrgConfParser::XOrgConfParser(QString confLocation, QObject *parent) :
     m_textareaDialog.setupUi(m_dialog);
 }
 
+bool XOrgConfParser::configureSystem()
+{
+    QFile f(m_confLocation);
+    if ( f.exists() ) {
+        return true;
+    }
+    // TODO: Translations for not-found message
+    QString distro_filename = ":/messages/xorg-conf-not-found.html";
+    QString distro_html = QString(HelperIO::fileToQString(distro_filename)).arg(m_confLocation);
+    QMessageBox box;
+    box.setText(distro_html);
+    box.exec();
+    return false;
+}
+
 void XOrgConfParser::enableXinerama(bool enable)
 {
     QString newStr;
@@ -31,12 +46,15 @@ void XOrgConfParser::enableXinerama(bool enable)
                 inProperSection = true;
             }
         } else {
+
             QRegExp EndSection("^EndSection");
             if (EndSection.indexIn(curLine) >= 0) {
                 if(enable){
-                    newStr += "    Option         \"Xinerama\" \"1\"\n";
+                    QString xinerama = "    Option         \"Xinerama\" \"1\"\n";
+                    newStr += xinerama;
                 } else {
-                    newStr += "    Option         \"Xinerama\" \"0\"\n";
+                    QString xinerama = "    Option         \"Xinerama\" \"0\"\n";
+                    newStr += xinerama;
                 }
                 inProperSection = false;
             }
@@ -44,7 +62,6 @@ void XOrgConfParser::enableXinerama(bool enable)
             // The Money Code
             QRegExp OptionXinerama("^[\\s\t]+Option[\\s\t]+\"Xinerama\"[\\s\t]+\"[01]\"");
             if (OptionXinerama.indexIn(curLine) >= 0) {
-                qDebug() << "line #" << line_num << curLine;
                 line_is_good = false;
             }
 
@@ -53,9 +70,23 @@ void XOrgConfParser::enableXinerama(bool enable)
             newStr += curLine;
     }
 
-//    m_textareaDialog.label->setText(m_confLocation);
-//    m_textareaDialog.textarea->setText(newStr);
-//    m_dialog->show();
+    bool safe_to_proceed = false;
+
+    if ( m_confirmChanges ) {
+        m_textareaDialog.label->setText("Confirm xorg.conf changes");
+        m_textareaDialog.textarea->setText(newStr);
+        m_dialog->exec();
+        if (m_dialog->result() == 1) { // Ok button pressed
+            safe_to_proceed = true;
+        }
+    } else {
+        safe_to_proceed = true;
+    }
+
+    if (!safe_to_proceed) {
+        qDebug("Cancelling operation.");
+        return;
+    }
 
     QString tmpFileLocation = "/tmp/xorg.conf.wideguy";
     QFile file(tmpFileLocation);
@@ -111,30 +142,6 @@ void XOrgConfParser::enableXinerama(bool enable)
         qDebug() << msg;
     }
     p.close();
-
-}
-
-QString XOrgConfParser::readConfig(bool reRead)
-{
-    if (m_conf.compare("") >= 0 || reRead) {
-        QFile file(m_confLocation);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QMessageBox errorBox;
-            errorBox.setIcon(QMessageBox::Critical);
-            errorBox.setText(tr("Unable to open conf file: ") + m_confLocation);
-            errorBox.exec();
-            m_conf = "";
-        }
-        if (!file.isReadable()) {
-            QMessageBox errorBox;
-            errorBox.setIcon(QMessageBox::Critical);
-            errorBox.setText(tr("Don't have permissions to read conf file: ") + m_confLocation);
-            errorBox.exec();
-            m_conf = "";
-        }
-        m_conf = file.readAll();
-    }
-    return m_conf;
 }
 
 bool XOrgConfParser::xineramaIsEnabled()
@@ -157,10 +164,46 @@ bool XOrgConfParser::xineramaIsEnabled()
             // The Money Code
             QRegExp OptionXinerama("^[\\s\t]+Option[\\s\t]+\"Xinerama\"[\\s\t]+\"1\"");
             if (OptionXinerama.indexIn(curLine) >= 0) {
+                qDebug() << "Tis enabled" << curLine;
                 return true;
             }
 
         }
     }
     return false;
+}
+
+void XOrgConfParser::setConfLocation(QString confLocation)
+{
+    m_confLocation = confLocation;
+}
+
+QString XOrgConfParser::confLocation()
+{
+    return m_confLocation;
+}
+
+QString XOrgConfParser::readConfig(bool reRead)
+{
+    if (m_conf.compare("") >= 0 || reRead) {
+        QFile file(m_confLocation);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            qWarning() << "Xorg config" << m_confLocation << "does not exist";
+            m_conf = "";
+        } else if (!file.isReadable()) {
+            QMessageBox errorBox;
+            errorBox.setIcon(QMessageBox::Critical);
+            errorBox.setText(tr("Don't have permissions to read conf file: ") + m_confLocation);
+            errorBox.exec();
+            m_conf = "";
+        } else {
+            m_conf = file.readAll();
+        }
+    }
+    return m_conf;
+}
+
+void XOrgConfParser::setConfirmChanges(bool confirmChanges)
+{
+    m_confirmChanges = confirmChanges;
 }

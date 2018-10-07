@@ -83,10 +83,11 @@
     <property name="title">
      <string>WideGuy</string>
     </property>
-    <addaction name="actionWebsite"/>
+    <addaction name="actionTutorial"/>
     <addaction name="actionSettings"/>
-    <addaction name="actionXOrg_Settings"/>
+    <addaction name="actionSubmitBug"/>
     <addaction name="actionGeneral_Settings"/>
+    <addaction name="actionAbout"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -94,43 +95,73 @@
     </property>
     <addaction name="actionManual_Actions"/>
     <addaction name="actionForce_SkinnyMan"/>
+    <addaction name="actionRestore_Backup"/>
    </widget>
    <addaction name="menuConfiguration"/>
    <addaction name="menuHelp"/>
   </widget>
-  <action name="actionXOrg_Settings">
+  <action name="actionSubmitBug">
+   <property name="icon">
+    <iconset theme="format-text-bold"/>
+   </property>
    <property name="text">
     <string>Submit a Bug</string>
    </property>
   </action>
   <action name="actionGeneral_Settings">
+   <property name="icon">
+    <iconset theme="face-angel"/>
+   </property>
    <property name="text">
     <string>Buy me a Root Beer</string>
    </property>
   </action>
-  <action name="actionWebsite">
+  <action name="actionTutorial">
+   <property name="icon">
+    <iconset theme="help-browser"/>
+   </property>
    <property name="text">
     <string>Tutorial</string>
    </property>
   </action>
   <action name="actionSettings">
+   <property name="icon">
+    <iconset theme="preferences-system"/>
+   </property>
    <property name="text">
     <string>Settings</string>
    </property>
   </action>
-  <action name="actionRestore_Backup">
-   <property name="text">
-    <string>Restore Backup</string>
-   </property>
-  </action>
   <action name="actionManual_Actions">
+   <property name="icon">
+    <iconset theme="view-fullscreen"/>
+   </property>
    <property name="text">
     <string>Force WideMan</string>
    </property>
   </action>
   <action name="actionForce_SkinnyMan">
+   <property name="icon">
+    <iconset theme="view-restore"/>
+   </property>
    <property name="text">
     <string>Force SkinnyMan</string>
+   </property>
+  </action>
+  <action name="actionRestore_Backup">
+   <property name="icon">
+    <iconset theme="drive-harddisk"/>
+   </property>
+   <property name="text">
+    <string>Restore Backup</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about"/>
+   </property>
+   <property name="text">
+    <string>About</string>
    </property>
   </action>
  </widget>

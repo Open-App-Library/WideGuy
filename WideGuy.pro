@@ -27,17 +27,24 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    xorgconfparser.cpp
+    xorgconfparser.cpp \
+    settings.cpp
 
 HEADERS += \
         mainwindow.h \
-    xorgconfparser.h
+    xorgconfparser.h \
+    helper-io.hpp \
+    settings.h
 
 FORMS += \
         mainwindow.ui \
-    textareadialog.ui
+    textareadialog.ui \
+    settings.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc

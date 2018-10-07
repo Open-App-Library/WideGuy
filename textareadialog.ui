@@ -25,7 +25,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QTextEdit" name="textarea"/>
+    <widget class="QTextEdit" name="textarea">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

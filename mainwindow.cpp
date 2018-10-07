@@ -6,11 +6,12 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
+    m_settings(new Settings(this)),
     m_configParser(new XOrgConfParser)
 {
     ui->setupUi(this);
 
-    setWideMode( m_configParser->xineramaIsEnabled() );
+    updateSettings();
 
     connect(ui->mainButton, &QPushButton::clicked,
             this, &MainWindow::mainButtonClicked);
@@ -23,7 +24,7 @@ void MainWindow::mainButtonClicked()
         m_lastTimeToggled = currentTime; // set the last-toggled time so we can make sure the user is not clicking too fast
 
         m_configParser->enableXinerama(!m_wideMode);
-        setWideMode( m_configParser->xineramaIsEnabled() );
+        setMainButtonLabel( m_configParser->xineramaIsEnabled() );
 
     } else {
         QMessageBox::warning(
@@ -33,19 +34,59 @@ void MainWindow::mainButtonClicked()
     }
 }
 
+void MainWindow::CheckSetupAndSetLabel()
+{
+    m_config_exists = m_configParser->configureSystem();
+    if (m_config_exists)
+        setMainButtonLabel( m_configParser->xineramaIsEnabled() );
+    else
+        setMainButtonEnabled( false );
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
     delete m_configParser;
+    delete m_settings;
 }
 
-void MainWindow::setWideMode(bool wideMode)
+void MainWindow::setMainButtonLabel(bool wideMode)
 {
     m_wideMode = wideMode;
-    if (m_wideMode) {
+    if ( !m_config_exists ) {
+        setMainButtonEnabled( m_config_exists );
+        return;
+    }
+    if ( m_wideMode ) {
         ui->mainButton->setText(tr("Disable Wide Mode"));
     } else {
         ui->mainButton->setText(tr("Enable Wide Mode"));
     }
 
+}
+
+void MainWindow::setMainButtonEnabled(bool enabled)
+{
+    ui->mainButton->setEnabled(enabled);
+    if (enabled)
+        setMainButtonLabel( m_configParser->xineramaIsEnabled() );
+    else
+        ui->mainButton->setText(tr("Button disabled until\nxorg.conf is successfully\nloaded."));
+}
+
+void MainWindow::on_actionSettings_triggered()
+{
+    m_settings->show();
+}
+
+void MainWindow::updateSettings()
+{
+    m_configParser->setConfirmChanges( m_settings->confirmChanges() );
+    if ( m_settings->useCustomLocation() ) {
+        m_configParser->setConfLocation( m_settings->customLocation() );
+        CheckSetupAndSetLabel();
+    } else {
+        m_configParser->setConfLocation( DEFAULT_XORG_CONF_LOCATION );
+        CheckSetupAndSetLabel();
+    }
 }
