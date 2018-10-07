@@ -6,12 +6,11 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_configParser(new XOrgConfParser("/home/doug/xorg.conf"))
+    m_configParser(new XOrgConfParser)
 {
     ui->setupUi(this);
 
     setWideMode( m_configParser->xineramaIsEnabled() );
-    qDebug() << "The mode is" << m_wideMode;
 
     connect(ui->mainButton, &QPushButton::clicked,
             this, &MainWindow::mainButtonClicked);
@@ -22,12 +21,9 @@ void MainWindow::mainButtonClicked()
     qint64 currentTime = QDateTime::currentMSecsSinceEpoch();
     if (currentTime - m_lastTimeToggled > 200) {
         m_lastTimeToggled = currentTime; // set the last-toggled time so we can make sure the user is not clicking too fast
-        m_wideMode = !m_wideMode;        // Toggle m_wideMode variable
 
-        // Adjust the label
-        setWideMode(m_wideMode);
-
-        m_configParser->enableXinerama(m_wideMode);
+        m_configParser->enableXinerama(!m_wideMode);
+        setWideMode( m_configParser->xineramaIsEnabled() );
 
     } else {
         QMessageBox::warning(
