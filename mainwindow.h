@@ -42,6 +42,10 @@ private slots:
 
     void on_actionRestart_Xorg_triggered();
 
+    void on_actionGeneral_Settings_triggered();
+
+    void on_actionSubmitBug_triggered();
+
 private:
     Ui::MainWindow *ui;
     Settings *m_settings;

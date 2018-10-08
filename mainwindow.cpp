@@ -1,5 +1,6 @@
 #include <QMessageBox>
 #include <QDateTime>
+#include <QDesktopServices>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -127,4 +128,14 @@ void MainWindow::on_actionRestore_Backup_triggered()
 void MainWindow::on_actionRestart_Xorg_triggered()
 {
     m_configParser->restartXorg();
+}
+
+void MainWindow::on_actionGeneral_Settings_triggered()
+{
+    QDesktopServices::openUrl(QString("https://liberapay.com/openapplibrary/"));
+}
+
+void MainWindow::on_actionSubmitBug_triggered()
+{
+    QDesktopServices::openUrl(QString("https://gitlab.com/Open-App-Library/WideGuy/issues/new"));
 }
