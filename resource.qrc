@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/messages">
+        <file alias="xorg-conf-not-found.html">messages/xorg-conf-not-found.html</file>
+    </qresource>
+</RCC>

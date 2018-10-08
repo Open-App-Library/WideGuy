@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=WideGuy
+GenericName=Xinerama GUI
+Comment=Multi-monitor gaming at a click of a button
+Exec=WideGuy
+Icon=wideguy
+Categories=Game;
