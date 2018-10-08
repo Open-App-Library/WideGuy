@@ -139,3 +139,8 @@ void MainWindow::on_actionSubmitBug_triggered()
 {
     QDesktopServices::openUrl(QString("https://gitlab.com/Open-App-Library/WideGuy/issues/new"));
 }
+
+void MainWindow::on_actionTutorial_triggered()
+{
+    QDesktopServices::openUrl(QString("http://openapplibrary.org/project/wideguy"));
+}

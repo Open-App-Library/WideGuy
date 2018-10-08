@@ -46,6 +46,8 @@ private slots:
 
     void on_actionSubmitBug_triggered();
 
+    void on_actionTutorial_triggered();
+
 private:
     Ui::MainWindow *ui;
     Settings *m_settings;
