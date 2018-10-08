@@ -122,7 +122,11 @@ void XOrgConfParser::enableXinerama(bool enable)
     }
     script.close();
 
+<<<<<<< HEAD
     QString cmd = QString("pkexec sh %1 %2 %3 %4").arg(scriptLocation, tmpFileLocation, m_confLocation, "\""+m_xorgRestartCmd+"\"");
+=======
+    QString cmd = QString("pkexec sh %1 %2 %3 %4").arg(scriptLocation, tmpFileLocation, m_confLocation, m_xorgRestartCmd);
+>>>>>>> 767c9a675cf1fa39120c772b61f765f45d83e540
     HelperIO::shellCommand(cmd);
 }
 

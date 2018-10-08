@@ -42,9 +42,12 @@ target_wrapper.*
 # QtCreator CMake
 CMakeLists.txt.user*
 
+<<<<<<< HEAD
 # Emacs
 *~
 *#
 
 # Dist
 dist
+=======
+>>>>>>> 767c9a675cf1fa39120c772b61f765f45d83e540
