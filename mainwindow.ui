@@ -175,10 +175,20 @@
   </action>
   <action name="actionRestart_Xorg">
    <property name="icon">
-    <iconset theme="video-display"/>
+    <iconset theme="video-display">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Restart Xorg</string>
+   </property>
+  </action>
+  <action name="actionGenerateXorgConf">
+   <property name="icon">
+    <iconset theme="text-x-generic">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Generate a basic xorg.conf</string>
    </property>
   </action>
  </widget>
