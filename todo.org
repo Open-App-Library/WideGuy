@@ -1,0 +1,13 @@
+#+title: TODO
+
+* Write Readme file
+
+* Write page for app on website
+
+* Maybe make a video explainer
+
+* Upload AppImage release
+
+* Test AppImage on a virtualbox machine.
+
+* Share on reddit
