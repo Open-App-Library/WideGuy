@@ -1,13 +1,13 @@
 #+title: TODO
 
-* Write Readme file
+* DONE Write Readme file
 
-* Write page for app on website
+* DONE Write page for app on website
 
-* Maybe make a video explainer
+* TODO Maybe make a video explainer
 
-* Upload AppImage release
+* DONE Upload AppImage release
 
-* Test AppImage on a virtualbox machine.
+* DONE Test AppImage on a virtualbox machine.
 
-* Share on reddit
+* DONE Share on reddit
