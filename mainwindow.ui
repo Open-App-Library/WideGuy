@@ -143,7 +143,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Force WideMan</string>
+    <string>Force Wide Mode</string>
    </property>
   </action>
   <action name="actionForce_SkinnyMan">
@@ -152,7 +152,7 @@
      <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
-    <string>Force SkinnyMan</string>
+    <string>Force Regular Mode</string>
    </property>
   </action>
   <action name="actionRestore_Backup">
