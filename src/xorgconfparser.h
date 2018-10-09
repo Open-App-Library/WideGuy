@@ -22,7 +22,7 @@ public:
     // Checks if Xorg configuration file exists. Returns false if it does not exist.
     bool configureSystem();
 
-    void enableXinerama(bool enable);
+    void enableXinerama(bool enable, bool restartXorg=true);
     bool xineramaIsEnabled();
 
     static QString getDisplayManager();

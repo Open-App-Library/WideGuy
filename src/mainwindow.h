@@ -27,7 +27,7 @@ public:
     void CheckSetupAndSetLabel();
     void updateSettings();
 
-    void setWideMode(bool enabled);
+    void setWideMode(bool enabled, bool restartXorg=true);
 
 private slots:
     void on_actionSettings_triggered();

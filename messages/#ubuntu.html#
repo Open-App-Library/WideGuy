@@ -1,6 +1,0 @@
-<p>Unable to locate your <b>xorg.conf</b>. It is typically located in /etc/X11/xorg.conf</p>
-
-<p>You appear b to be on an Ubuntu-based distribution.</p>
-
-<p>If your xorg.conf is in a special location you may manually set it in the WideGuy settings.</p>
-

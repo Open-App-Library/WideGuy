@@ -87,13 +87,13 @@ void MainWindow::updateSettings()
     CheckSetupAndSetLabel();
 }
 
-void MainWindow::setWideMode(bool enabled)
+void MainWindow::setWideMode(bool enabled, bool restartXorg)
 {
     qint64 currentTime = QDateTime::currentMSecsSinceEpoch();
     if (currentTime - m_lastTimeToggled > 200) {
         m_lastTimeToggled = currentTime; // set the last-toggled time so we can make sure the user is not clicking too fast
 
-        m_configParser->enableXinerama( enabled );
+        m_configParser->enableXinerama( enabled, restartXorg );
         setMainButtonLabel( m_configParser->xineramaIsEnabled() );
 
     } else {
@@ -111,12 +111,12 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_actionForce_WideMan_triggered()
 {
-    setWideMode( true );
+    setWideMode( true, false ); // (bool enabled, bool restartXorg)
 }
 
 void MainWindow::on_actionForce_SkinnyMan_triggered()
 {
-    setWideMode( false );
+    setWideMode( false, false ); // (bool enabled, bool restartXorg)
 }
 
 void MainWindow::on_actionRestore_Backup_triggered()

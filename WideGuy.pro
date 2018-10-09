@@ -25,27 +25,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    xorgconfparser.cpp \
-    settings.cpp
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/xorgconfparser.cpp \
+    src/settings.cpp
 
 HEADERS += \
-        mainwindow.h \
-    xorgconfparser.h \
-    helper-io.hpp \
-    settings.h
+    src/mainwindow.h \
+    src/xorgconfparser.h \
+    src/helper-io.hpp \
+    src/settings.h
 
 FORMS += \
-        mainwindow.ui \
-    textareadialog.ui \
-    settings.ui \
-    about.ui
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+    ui/mainwindow.ui \
+    ui/textareadialog.ui \
+    ui/settings.ui \
+    ui/about.ui
 
 RESOURCES += \
-    resource.qrc
+    resources/resource.qrc

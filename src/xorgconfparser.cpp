@@ -30,7 +30,7 @@ bool XOrgConfParser::configureSystem()
     return false;
 }
 
-void XOrgConfParser::enableXinerama(bool enable)
+void XOrgConfParser::enableXinerama(bool enable, bool restartXorg)
 {
     QString newStr;
     QStringList lines = readConfig().split("\n");
@@ -113,7 +113,8 @@ void XOrgConfParser::enableXinerama(bool enable)
         stream << "  cp $m_confLocation $m_confLocation.wideguy.backup" << "\n";
         stream << "fi"                                                  << "\n";
         stream << "mv $tmpFileLocation $m_confLocation"                 << "\n";
-        stream << "$3"                                                  << "\n";
+        if ( restartXorg )
+            stream << "$3"                                              << "\n";
     } else {
         QMessageBox errorBox;
         errorBox.setIcon(QMessageBox::Critical);
@@ -123,7 +124,8 @@ void XOrgConfParser::enableXinerama(bool enable)
     script.close();
 
 
-    QString cmd = QString("pkexec sh %1 %2 %3 %4").arg(scriptLocation, tmpFileLocation, m_confLocation, "\""+m_xorgRestartCmd+"\"");
+    QString cmd = QString("pkexec sh %1 %2 %3 %4").arg(scriptLocation, tmpFileLocation,
+                                                       m_confLocation, "\""+m_xorgRestartCmd+"\"");
     HelperIO::shellCommand(cmd);
 }
 
